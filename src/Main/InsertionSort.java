@@ -13,8 +13,8 @@ public class InsertionSort {
     public static void sortASC(int[] list) {
         for (int i = 1; i < list.length; i++) {
             int temp = list[i];
-            int j;
-            for (j = i; j > 0 && list[j - 1] > temp; j--) {
+            int j = i;
+            for (; j > 0 && list[j - 1] > temp; j--) {
                 list[j] = list[j - 1];
             }
             list[j] = temp;
@@ -25,8 +25,8 @@ public class InsertionSort {
     public static void sortDSC(int[] list) {
         for (int i = 1; i < list.length; i++) {
             int temp = list[i];
-            int j;
-            for (j = i; j > 0 && list[j - 1] < temp; j--) {
+            int j = i;
+            for (; j > 0 && list[j - 1] < temp; j--) {
                 list[j] = list[j - 1];
             }
             list[j] = temp;
