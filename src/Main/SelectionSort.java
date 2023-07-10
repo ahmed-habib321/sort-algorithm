@@ -15,7 +15,7 @@ public class SelectionSort {
             int max = 0;
             for (int j = 1; j <= i; j++) {
                 if (list[j] > list[max]) {
-                    max = i;
+                    max = j;
                 }
             }
             swap(list, max, i);
@@ -24,7 +24,15 @@ public class SelectionSort {
     }
 
     public static void sortDSC(int[] list) {
-
+        for (int i = list.length - 1; i > 0; i--) {
+            int min = 0;
+            for (int j = 1; j <= i; j++) {
+                if (list[j] < list[min]) {
+                    min = j;
+                }
+            }
+            swap(list, min, i);
+        }
     }
 
     public static void swap(int[] array, int i, int j) {

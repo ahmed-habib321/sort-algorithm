@@ -16,7 +16,7 @@ public class main {
     public static void main(String[] args) {
         int[] list = {1, 2, -5, 9, -8, 9};
         
-        SelectionSort.sortASC(list);
+        SelectionSort.sortDSC(list);
         
         for (int i : list) {
             System.out.println(i);
