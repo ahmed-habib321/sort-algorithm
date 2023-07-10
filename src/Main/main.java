@@ -14,9 +14,9 @@ public class main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        int[] list = {1, 2, -5, 3, -8, 9};
+        int[] list = {1, 2, -5, 9, -8, 9};
         
-        BubbleSort.sortASC(list);
+        SelectionSort.sortASC(list);
         
         for (int i : list) {
             System.out.println(i);
