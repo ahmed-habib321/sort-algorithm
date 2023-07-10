@@ -9,28 +9,23 @@ package Main;
  * @author Ahmed
  */
 public class SelectionSort {
-    
-    
+
     public static void sortASC(int[] list) {
-        for (int i = list.length-1; i > 0 ; i--) {
-            
+        for (int i = list.length - 1; i > 0; i--) {
             int max = 0;
-            
-            for (int j = 0; j <= i; j++) {
-                
-                if (list[j] > list[i]) {
-                    swap(list, j, i);
+            for (int j = 1; j <= i; j++) {
+                if (list[j] > list[max]) {
+                    max = i;
                 }
-                
             }
+            swap(list, max, i);
         }
-        
+
     }
-    
+
     public static void sortDSC(int[] list) {
-        
+
     }
-    
 
     public static void swap(int[] array, int i, int j) {
         if (i != j) {
@@ -39,5 +34,5 @@ public class SelectionSort {
             array[j] = temp;
         }
     }
-        
+
 }
