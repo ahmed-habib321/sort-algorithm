@@ -4,6 +4,8 @@
  */
 package Main;
 
+import java.util.Arrays;
+
 /**
  *
  * @author Ahmed
@@ -14,11 +16,11 @@ public class main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        int[] list = {1, 2, -5, 9, -8, 9};
+        int[] list = {1, 2, 9 , -5, 9, -8};
         
-        MergeSort.mergesort(list);
+        QuickSort.quicksort(list);
         for (int i : list) {
             System.out.println(i);
-        }
+        }                
     }
 }
