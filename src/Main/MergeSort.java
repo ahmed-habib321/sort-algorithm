@@ -123,7 +123,7 @@ public class MergeSort {
     }
     
     public static void mergesort(int[] input){
-        mergesort(input , 0 , input.length-1);
+        mergesort(input , 0 , input.length);
     }
     
     
