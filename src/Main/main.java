@@ -16,11 +16,11 @@ public class main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        int[] list = {1, 2, 9 , -5, 9, -8};
-        
-        QuickSort.quicksort(list);
+        int[] list = {9, 5, 2, 6, 8, 1, 7};
+
+        RadixSort.radixSort(list, 10, 1);
         for (int i : list) {
             System.out.println(i);
-        }                
+        }
     }
 }
