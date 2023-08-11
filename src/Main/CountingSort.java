@@ -49,24 +49,37 @@ public class CountingSort {
     
     
     
-    public static void countingsort(int[] input ,int min, int max){
-        int[] counter = new int[(max-min+1)];
-        
-        for (int i = 0; i < input.length; i++) {
-            if (input[i]-1 >= counter.length) {
-                System.out.println("the numbers ought to be sorted are excceds the max");
-                System.exit(0);
-            }
-            counter[input[i]-min]++;
+    /**
+     * Sorts an array of integers using the Counting Sort algorithm.
+     * This algorithm is efficient when the range of input values (max - min + 1)
+     * is not significantly larger than the number of elements in the array.
+     *
+     * @param input The array of integers to be sorted.
+     * @param min The minimum value in the range of input values.
+     * @param max The maximum value in the range of input values.
+     * @throws IllegalArgumentException if the range of input values is invalid.
+     */
+    public static void countingSort(int[] input, int min, int max) {
+        if (min > max) {
+            throw new IllegalArgumentException("Invalid range: min must be less than or equal to max.");
         }
-        
-        int j = 0;
+
+        int range = max - min + 1;
+        int[] counter = new int[range];
+
+        for (int num : input) {
+            if (num < min || num > max) {
+                throw new IllegalArgumentException("Input value out of range.");
+            }
+            counter[num - min]++;
+        }
+
+        int index = 0;
         for (int i = min; i <= max; i++) {
-            while (counter[i-min]>0) {                
-                input[j++] = i;
-                counter[i-min]--;
+            while (counter[i - min] > 0) {
+                input[index++] = i;
+                counter[i - min]--;
             }
         }
-    
     }
 }

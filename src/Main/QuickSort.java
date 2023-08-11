@@ -10,27 +10,28 @@ package Main;
  */
 public class QuickSort {
     /**
-     * Quick sort is a Recursive divide and conquer algorithm 
+     * Quick Sort is a recursive divide-and-conquer algorithm used for sorting arrays
      * 
-     * partitioning step :
+     * Here's how it works:
      * 
-     * it choose a pivot element to partition the array into two parts 
-     * the left part has the elements that are less than the pivot 
-     * and the right part has the elements that are greater than the pivot 
-     *  
-     * that means that the pivot element will be in it's correct sorted position
-     * but the left and the right arrays are still not sorted
+     * 1- Choose a 'pivot' element from the array
      * 
-     * in the end of the partitioning step we will have series of 1 element arrays
+     * 2- Rearrange the array so that all elements less than the pivot are on its left,
+     *    and all elements greater than the pivot are on its right
+     *    The pivot itself will be in its final sorted position
      * 
-     * and because every element will be a pivot element 
-     * that means that each element will be in it's correct postiton
+     * 3- Now, the left and right portions of the array are not sorted yet, 
+     *    but each element is in its correct sorted part
+     * 
+     * 4- Apply steps 1-3 recursively to the left and right portions of the array 
+     *    until the entire array is sorted 
+     *    This is done by treating each chosen element as a pivot and partitioning the sub-arrays
      * 
      * 
+     * The algorithm works in-place, meaning it doesn't require extra memory for sorting
      * 
-     * in-place algorithm 
-     * 
-     * O(n log(n) )-base2
+     *  time complexity is O(n log(n)) in the average and best cases 
+     *  However, in the worst case, it can be O(n^2), which is rare but possible
      * 
      * unstable algorithm
      *                    
@@ -38,43 +39,58 @@ public class QuickSort {
      */
     
     
-    
-    public static void quicksort(int[] input , int start , int end){
-        if (end-start<2) {
+    /**
+     * Sorts the given portion of the array using the QuickSort algorithm.
+     *
+     * @param input The array to be sorted.
+     * @param start The starting index of the portion to be sorted.
+     * @param end The ending index of the portion to be sorted (exclusive).
+     */
+    public static void quicksort(int[] input, int start, int end) {
+        if (end - start < 2) {
             return;
         }
-        
-        int pivot = partition(input,start,end);
+
+        int pivot = partition(input, start, end);
         quicksort(input, start, pivot);
-        quicksort(input, pivot+1,end);
-    }
-    
-    public static void quicksort(int[] input){
-        quicksort(input,0,input.length);
+        quicksort(input, pivot + 1, end);
     }
 
+    /**
+     * Sorts array using the QuickSort algorithm.
+     *
+     * @param input The array to be sorted.
+     */
+    public static void quicksort(int[] input) {
+        quicksort(input, 0, input.length);
+    }
+
+    /**
+     * Partitions the array portion around a pivot element.
+     *
+     * @param input The array to be partitioned.
+     * @param start The starting index of the portion to be partitioned.
+     * @param end The ending index of the portion to be partitioned (exclusive).
+     * @return The index of the pivot element after partitioning.
+     */
     private static int partition(int[] input, int start, int end) {
         int pivot = input[start];
         int i = start;
         int j = end;
-        
-        while (i<j) {  
-            
-            while (i<j && input[--j] >= pivot);
-            
-            if (i<j) {
+
+        while (i < j) {
+            while (i < j && input[--j] >= pivot) ;
+            if (i < j) {
                 input[i] = input[j];
             }
-            
-            while (i<j && input[++i] <= pivot);
-            
-            if (i<j) {
+
+            while (i < j && input[++i] <= pivot) ;
+            if (i < j) {
                 input[j] = input[i];
             }
-            
         }
         input[j] = pivot;
-        return j ;
+        return j;
     }
-    
+
 }

@@ -11,68 +11,68 @@ package Main;
 public class SelectionSort {
     
     /***
-     * How it works 
+     * it dividing an array into two parts: a sorted part and an unsorted part 
+     * Initially, the sorted part is empty, and the unsorted part includes the entire array
      * 
-     * [20,35,-15,7,55,1,-22]
-     * it partition the array to sorted part and unsorted part 
-     * we start by getting the index of the unsorted partition which is the last item that been sorted 
-     * it first no item has been put in it's correct place then the index of the unsorted will be the last
-     * in our case 6
-     * (ASC)
-     * now we start by looking for the greatest number in the array
-     * then when the array ends we will have the position of the greatest element in the unsorted part 
-     * we swap it's position with the last unsorted index 
-     * now the last element is in it's correct place 
+     * Here's how the algorithm works:
      * 
-     * 1- A = [20,35,-15,7,55,1,-22]    max = 0 , x=1;  A[max] > A[x] i.e 20>35 ?  (no , max = x)
-     * 2- A = [20,35,-15,7,55,1,-22]    max = 1 , x=2;  A[max] > A[x] i.e 35>-15 ?  (yes , no change)
-     * 3- A = [20,35,-15,7,55,1,-22]    max = 1 , x=3;  A[max] > A[x] i.e 35>7 ?  (yes , no change)
-     * 4- A = [20,35,-15,7,55,1,-22]    max = 1 , x=4;  A[max] > A[x] i.e 35>55 ?  (no , max = x)
-     * 5- A = [20,35,-15,7,55,1,-22]    max = 4 , x=5;  A[max] > A[x] i.e 55>1 ?  (yes , no change)
-     * 6- A = [20,35,-15,7,55,1,-22]    max = 4 , x=6;  A[max] > A[x] i.e 55>-22 ?  (yes , no change)
-     * 
-     * now we traverse the array and we has that the greatest element is at index 4 
-     * now swap it with the last unsorted element 
-     * 
-     * A = [20,35,-15,7,-22,1,55]
-     * 
-     * and like this the the unordered part of the array become 5 because the last element is 
-     * put in it's correct position 
-     * 
-     * then repeat the process to the rest of the array to sorted it all 
+     * 1- Start by considering the entire array as unsorted
+     * 2- Find the largest element in the unsorted part of the array and remember its index
+     * 3- Swap the largest element found with the last element in the unsorted part
+     * 4- Now, the last element of the unsorted part is in its correct position, and the sorted part has grown by one element
+     * 5- Repeat steps 2-4 for the remaining unsorted part of the array until the entire array is sorted
+     *  
      *
-     * in-place algorithm no extra memory used 
-     * complexity : O(n^2)
-     * unstable
-     * 
+     * Selection sort is an in-place algorithm, meaning it doesn't require extra memory
+     * time complexity is O(n^2)
+     * unstable sorting algorithm
      * 
      */
-
-    public static void sortASC(int[] list) {
+    
+    
+    /**
+     * Sorts the given integer array in ascending order using the Selection Sort
+     * algorithm.
+     *
+     * @param list The array to be sorted.
+     */
+    public static void sortAscending(int[] list) {
         for (int i = list.length - 1; i > 0; i--) {
-            int max = 0;
+            int maxIndex = 0;
             for (int j = 1; j <= i; j++) {
-                if (list[j] > list[max]) {
-                    max = j;
+                if (list[j] > list[maxIndex]) {
+                    maxIndex = j;
                 }
             }
-            swap(list, max, i);
-        }
-
-    }
-
-    public static void sortDSC(int[] list) {
-        for (int i = list.length - 1; i > 0; i--) {
-            int min = 0;
-            for (int j = 1; j <= i; j++) {
-                if (list[j] < list[min]) {
-                    min = j;
-                }
-            }
-            swap(list, min, i);
+            swap(list, maxIndex, i);
         }
     }
 
+    /**
+     * Sorts the given integer array in descending order using the Selection
+     * Sort algorithm.
+     *
+     * @param list The array to be sorted.
+     */
+    public static void sortDescending(int[] list) {
+        for (int i = list.length - 1; i > 0; i--) {
+            int minIndex = 0;
+            for (int j = 1; j <= i; j++) {
+                if (list[j] < list[minIndex]) {
+                    minIndex = j;
+                }
+            }
+            swap(list, minIndex, i);
+        }
+    }
+
+    /**
+     * Swaps two elements in the given array.
+     *
+     * @param array The array in which elements will be swapped.
+     * @param i The index of the first element to be swapped.
+     * @param j The index of the second element to be swapped.
+     */
     public static void swap(int[] array, int i, int j) {
         if (i != j) {
             int temp = array[i];

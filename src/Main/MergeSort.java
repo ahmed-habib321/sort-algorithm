@@ -9,7 +9,7 @@ package Main;
  * @author Ahmed
  */
 public class MergeSort {
-    
+
     /**
      * merge sort is a Recursive divide and conquer algorithm
      * that has two phases splitting and merging 
@@ -91,52 +91,63 @@ public class MergeSort {
      * stable algorithm
      */
     
+    /**
+     * Merges two sorted subarrays within the 'input' array.
+     *
+     * @param input The array containing the subarrays to be merged.
+     * @param start The starting index of the first subarray.
+     * @param mid The ending index of the first subarray (exclusive).
+     * @param end The ending index of the second subarray (exclusive).
+     */
     private static void merge(int[] input, int start, int mid, int end) {
-        if (input[mid-1] <= input[mid] ) {
-            return;
+        if (input[mid - 1] <= input[mid]) {
+            return; // The subarrays are already sorted, no need to merge.
         }
-        int i = start ;
-        int j = mid ;
-        int tempindex = 0;
-        
-        int[] temp = new int[end-start];
-        
-        while (i < mid && j < end) {            
-            temp[tempindex++] = input[i] <= input[j] ? input[i++]:input[j++];
+
+        int i = start;
+        int j = mid;
+        int tempIndex = 0;
+
+        int[] temp = new int[end - start];
+
+        while (i < mid && j < end) {
+            temp[tempIndex++] = input[i] <= input[j] ? input[i++] : input[j++];
         }
-        //handle any left over elements in the left array 
-        
-        System.arraycopy(input, i, input, start + tempindex, mid-i);
-        System.arraycopy(temp, 0, input, start, tempindex);
-        
-        
+
+        // Handle any leftover elements in the left subarray.
+        System.arraycopy(input, i, input, start + tempIndex, mid - i);
+        System.arraycopy(temp, 0, input, start, tempIndex);
     }
-    
-    private static void mergesort(int[] input , int start , int end){
-        if(end-start < 2){
-        return;
+
+    /**
+     * Recursively sorts a subarray using the merge sort algorithm.
+     *
+     * @param input The array to be sorted.
+     * @param start The starting index of the subarray to be sorted.
+     * @param end The ending index of the subarray to be sorted (exclusive).
+     */
+    private static void mergeSort(int[] input, int start, int end) {
+        if (end - start < 2) {
+            return; // Base case: subarray has 1 or 0 elements (already sorted).
         }
-        int mid = Math.floorDiv( (start + end) , 2);
-        mergesort(input,start,mid);
-        mergesort(input,mid,end);
-        merge(input , start , mid , end);
+
+        int mid = (start + end) / 2; // Calculate the midpoint of the subarray.
+        mergeSort(input, start, mid); // Recursively sort the left half.
+        mergeSort(input, mid, end);   // Recursively sort the right half.
+        merge(input, start, mid, end); // Merge the two sorted halves.
     }
-    
-    public static void mergesort(int[] input){
-        mergesort(input , 0 , input.length);
+
+    /**
+     * Sorts an array using the merge sort algorithm.
+     *
+     * @param input The array to be sorted.
+     */
+    public static void mergeSort(int[] input) {
+        mergeSort(input, 0, input.length);
     }
-    
-    
+
     /* 
     to do the desc sort change 
     temp[tempindex++] = input[i] >= input[j] ? input[i++]:input[j++];
-    */
-    
-    
-    
+     */
 }
-
-
-
-
-

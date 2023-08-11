@@ -10,48 +10,61 @@ package Main;
  */
 public class ShellSort {
     
-    
-    /***
-     * How it works 
+    /**
+     * Shell Sort is an advanced version of insertion sort that introduces the concept of a variable gap
      * 
-     * it is basically the insertion sort with variable gap 
-     * the gap is getting smaller until it reach to 1 then it becomes insertion sort
-     * it's like it does some preliminary work using gap greater than 1 and this work 
-     * put the elements in the array closer to their sorted position and then 
-     * in the last iteration when the gap becomes 1 it does insertion sort 
-     * this will reduce the amount of shifting required 
+     * Initially, a larger gap is used, gradually reducing to 1, which eventually turns the algorithm into a basic insertion sort
      * 
-     * in-place algorithm no extra memory used
-     * complexity : depend on the way of calculating the gap check wikipedia to more info
-     * unstable algorithm
+     * The process involves performing some preliminary sorting with larger gaps, which moves elements closer to their sorted positions
+     * 
+     * In the final iteration, when the gap becomes 1, a regular insertion sort is executed
+     * 
+     * This approach significantly reduces the amount of shifting required during sorting
+     * 
+     * In-place algorithm: It doesn't require extra memory for sorting
+     * Complexity: The efficiency depends on how the gap is calculated
+     *             Refer to Wikipedia for detailed information
+     * Unstable algorithm: The relative order of equal elements might change after sorting
      * 
      */ 
-
-    public static void sortASC(int[] list) {
-        for (int gap = list.length / 2; gap > 0; gap /= 2) {
-
-            for (int i = gap; i < list.length; i++) {
-                int temp = list[i];
-                int j = i;
-                for (; j >= gap && list[j - gap] > temp; j -= gap) {
-                    list[j] = list[j - gap];
-                }
-                list[j] = temp;
-            }
-        }
-    }
     
-    public static void sortDSC(int[] list) {
-        for (int gap = list.length / 2; gap > 0; gap /= 2) {
-
-            for (int i = gap; i < list.length; i++) {
-                int temp = list[i];
+    
+    /**
+     * Sorts the given integer array in ascending order using the Shell Sort
+     * algorithm.
+     *
+     * @param arr The integer array to be sorted.
+     */
+    public static void sortAscending(int[] arr) {
+        for (int gap = arr.length / 2; gap > 0; gap /= 2) {
+            for (int i = gap; i < arr.length; i++) {
+                int temp = arr[i];
                 int j = i;
-                for (; j >= gap && list[j - gap] < temp; j -= gap) {
-                    list[j] = list[j - gap];
+                for (; j >= gap && arr[j - gap] > temp; j -= gap) {
+                    arr[j] = arr[j - gap];
                 }
-                list[j] = temp;
+                arr[j] = temp;
             }
         }
     }
+
+    /**
+     * Sorts the given integer array in descending order using the Shell Sort
+     * algorithm.
+     *
+     * @param arr The integer array to be sorted.
+     */
+    public static void sortDescending(int[] arr) {
+        for (int gap = arr.length / 2; gap > 0; gap /= 2) {
+            for (int i = gap; i < arr.length; i++) {
+                int temp = arr[i];
+                int j = i;
+                for (; j >= gap && arr[j - gap] < temp; j -= gap) {
+                    arr[j] = arr[j - gap];
+                }
+                arr[j] = temp;
+            }
+        }
+    }
+
 }
